@@ -1,0 +1,17 @@
+pip install torch numpy transformers datasets tiktoken wandb tqdm
+
+# Dataset train creation
+#! from folder data/arithmetic_sample
+python create_dataset.py
+
+# Train model
+python train.py config/train_arithmetic.py --eval_iters=20 --log_interval=1 --block_size=64 --batch_size=12 --n_layer=4 --n_head=4 --n_embd=128 --max_iters=2000 --lr_decay_iters=2000 --dropout=0.0
+
+# Sample generation
+python sample.py --out_dir=out-arithmetic --device=cpu --num_samples=1 --start=FILE:data/arithmetic_sample/prompt.txt 
+
+# Evaluation
+#! From root folder
+python data/arithmetic_sample/evaluation.py
+
+

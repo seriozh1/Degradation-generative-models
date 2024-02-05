@@ -6,12 +6,12 @@ def generate_operation():
     return random.choice(operations)
 
 
-def generate_expression():
-    num1 = random.randint(1, 10)
-    num2 = random.randint(1, 10)
+def generate_expression(min_n=-100, max_n=100):
+    num1 = random.randint(min_n, max_n)
+    num2 = random.randint(min_n, max_n)
     operation = generate_operation()
     if operation == '/' and num2 == 0:
-        num2 = 1  # need to think if it's to substitute with 1
+        num2 = 1  # need to think if it's ok to substitute with 1
     return num1, operation, num2
 
 
